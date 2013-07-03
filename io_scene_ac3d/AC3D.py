@@ -357,11 +357,12 @@ class Material:
 		if bl_mat:
 			self.name = bl_mat.name
 			self.rgb = bl_mat.diffuse_color
-			self.amb = [bl_mat.ambient, bl_mat.ambient, bl_mat.ambient]
-			if export_config.mircol_as_emis:
-				self.emis = bl_mat.mirror_color * bl_mat.emit
-			else:
-				self.emis = [bl_mat.emit, bl_mat.emit, bl_mat.emit]
+			self.amb = bl_mat.diffuse_color * bl_mat.ambient
+			self.emis = bl_mat.diffuse_color * bl_mat.emit
+			#if export_config.mircol_as_emis:
+			#	self.emis = bl_mat.mirror_color * bl_mat.emit
+			#else:
+			#	self.emis = [bl_mat.emit, bl_mat.emit, bl_mat.emit]
 			self.spec = bl_mat.specular_intensity * bl_mat.specular_color
 			self.shi = bl_mat.specular_hardness
 			if bl_mat.use_transparency:
